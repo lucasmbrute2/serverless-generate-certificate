@@ -3,7 +3,7 @@ import type { AWS } from '@serverless/typescript';
 const serverlessConfiguration: AWS = {
   service: 'certificate-ignite',
   frameworkVersion: '3',
-  plugins: ['serverless-esbuild', 'serverless-dynamodb-local', 'serverless-offline',],
+  plugins: ['serverless-esbuild', 'serverless-dynamodb-local', 'serverless-offline'],
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
@@ -15,18 +15,26 @@ const serverlessConfiguration: AWS = {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
     },
+    iamRoleStatements: [
+      {
+        Effect: "Allow",
+        Action: ["dynamodb:*"],
+        Resource: ["*"]
+      }
+    ]
   },
   // import the function via paths
   functions: {
     generateCertificate: {
       handler: "src/functions/generateCertificate.handler",
+      timeout: 10,
       events: [
         {
           http: {
             path: "generateCertificate",
             method: "post",
 
-            cors: true
+            cors: true,
           }
         }
       ]
