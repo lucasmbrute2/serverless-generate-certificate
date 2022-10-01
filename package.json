@@ -16,6 +16,8 @@
   "dependencies": {
     "@middy/core": "^2.5.3",
     "@middy/http-json-body-parser": "^2.5.3",
+    "@types/handlebars": "^4.1.0",
+    "handlebars": "^4.7.7",
     "serverless-dynamodb-local": "^0.2.40",
     "serverless-plugin-typescript": "^2.1.2"
   },
