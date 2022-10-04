@@ -9,3 +9,8 @@ jspm_packages
 .esbuild
 .build
 .dynamodb
+
+yarn.lock
+yarn-error.log
+
+certificate.pdf
